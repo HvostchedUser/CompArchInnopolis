@@ -29,3 +29,14 @@ space:.asciiz  " "
       .text
 print:add  $t0, $zero, $a0  
       add  $t1, $zero, $a1  
+out:  lw   $a0, 0($t0)      
+      li   $v0, 1           
+      syscall               
+      la   $a0, space       
+      li   $v0, 4           
+      syscall              
+      addi $t0, $t0, 4      
+      addi $t1, $t1, -1     
+      bgtz $t1, out        
+      jr   $ra     
+
